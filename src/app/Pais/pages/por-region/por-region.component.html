@@ -1,0 +1,52 @@
+
+
+<h3>Buscar por región <small>{{regionActiva |titlecase}}</small></h3>
+
+<hr>
+
+<h3>Seleccione la región</h3>
+
+<!--PRIMERA OPCION-->
+<!-- [class.btn-primary]="regionActiva===region1" -->
+
+<!--SEGUNDA OPCION-->
+<!-- [ngClass]="{
+  'btn-primary':regionActiva===region1,
+  'btn-outline-primary':regionActiva!==region1
+}"  -->
+<button
+(click)=" ActivarRegion(region1)"  *ngFor="let region1 of regiones"
+[class]="(region1===regionActiva) ? 'btn btn-primary':'btn btn-outline-primary'"
+>{{region1 |titlecase}}</button>
+
+<div class="col " style="background-color: blue;">
+</div>
+
+
+<div class="row mt-5">
+
+  <table class="table table-hover">
+            <thead>
+
+              <th>#</th>
+              <th>Bandera</th>
+              <th>Nombre</th>
+              <th>Población</th>
+              <th>Link</th>
+
+            </thead>
+            <hr>
+            <tbody *ngFor="let pais of  Pais_Region; let i=index" class="mt-5">
+              <td>{{i+1}}</td>
+              <td>
+                <img src="{{pais.flags.png}}" width="60px"alt="">
+              </td>
+              <td>{{pais.name.common}}</td>
+              <td>{{pais.population|number}}</td>
+              <td><a [routerLink]="['/pais',pais.cca2]">ver...</a></td>
+            </tbody>
+            <hr>
+
+
+  </table>
+</div>
